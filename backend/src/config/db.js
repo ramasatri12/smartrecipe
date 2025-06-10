@@ -1,5 +1,7 @@
-const { Pool } = require('pg');
-require('dotenv').config();
+import { Pool } from "pg";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const pool = new Pool({
     user: process.env.DB_USER,
@@ -9,7 +11,6 @@ const pool = new Pool({
     port: process.env.DB_PORT,
 });
 
-// Uji koneksi saat aplikasi dimulai
 pool.query('SELECT NOW()', (err, res) => {
     if (err) {
         console.error('❌ Error connecting to the database', err.stack);
@@ -18,4 +19,4 @@ pool.query('SELECT NOW()', (err, res) => {
     }
 });
 
-module.exports = pool;
+export default pool;
